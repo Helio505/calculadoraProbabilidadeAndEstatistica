@@ -16,6 +16,11 @@ f"""
 d - informaçõesDidaticas (escrever junto da escolha do calculo)
 """, end="")
 
+# Função de suporte:
+def f(number):
+    """ Calcula o fatorial do parametro recebido. """
+    return math.factorial(number)
+
 def calculoProbabilidadeBinomial():
     """
     Calcula a probabilidade binomial
@@ -28,11 +33,6 @@ def calculoProbabilidadeBinomial():
     n = int(input("Insira n (quantidade de tentativas): "))
     p = float(input("Insira p (probabilidade): "))
     x = int(input("Insira x (eventos desejados): "))
-
-    # Função de suporte:
-    def f(number):
-        """ Calcula o fatorial do parametro recebido. """
-        return math.factorial(number)
 
     # Condicionais de validação:
     if p > 1:
@@ -61,26 +61,19 @@ def calculoProbabilidadeBinomialMultiplo():
 
     n = int(input("Insira n (quantidade de tentativas): "))
     p = float(input("Insira p (probabilidade): "))
-
     xStart = int(input("Insira onde o valor de x inicia: "))
     xEnd = int(input("Insira onde o valor de x termina: "))
 
-    # Função de suporte:
-    def f(number):
-        """ Calcula o fatorial do parametro recebido. """
-        return math.factorial(number)
-
     # Condicionais de validação:
     if p > 1:
-        return print("      ERRO - P não pode ser maior que 1")
+        return print("""    ERRO - P não pode ser maior que 1""")
     elif n<xStart or n<xEnd:
         return print("""    ERRO - x não pode ser maior que n, pois seria necessário calcular o fatorial de um número negativo.\n""")
     elif xStart > xEnd:
         return print("""    ERRO - xStart > xEnd.""")
     
-    # Calculo:
+    # Calculando para cada valor de x:
     vetorComResultados = []
-    
     xValue = xStart
     while xValue != xEnd+1:
         calcPt1 = (f(n)/(f(xValue)*f(n-xValue)))
@@ -90,6 +83,7 @@ def calculoProbabilidadeBinomialMultiplo():
         vetorComResultados.append(resultado)
         xValue += 1
 
+    # Displaying cada resultado:
     print("\nResultado:")
     xValue2 = xStart
     for i in vetorComResultados:
@@ -109,11 +103,6 @@ def calculoCombinacao():
     global modoDidatico
     if modoDidatico == True:
         print(informacoesDidaticasCalculoCombinatoriaCombinacao)
-
-    # Função de suporte:
-    def f(number):
-        """ Calcula o fatorial do parametro recebido. """
-        return math.factorial(number)
 
     n = int(input("Insira n: "))
     r = int(input("Insira r: "))
@@ -142,18 +131,13 @@ def calculoArranjo():
     if modoDidatico == True:
         print(informacoesDidaticasCalculoCombinatoriaArranjo)
     
-    # Função de suporte:
-    def f(number):
-        """ Calcula o fatorial do parametro recebido. """
-        return math.factorial(number)
-
     n = int(input("Insira n: "))
     r = int(input("Insira r: "))
 
     resultado = f(n)/(f(n-r))
     return print(f"\nResultado:\nA({n},{r}) = {resultado}")
 
-def calculoProbabilidadeCondicional():
+def calculoProbabilidadeCondicional(): # TODO adicionar probabilidade condicional.
     """
     Calcula probabilidade condicional.
     """
@@ -163,8 +147,7 @@ def calculoProbabilidadeCondicional():
         print(informacoesDidaticasCalculoProbabilidadeCondicional)
     return
 
-# calculoProbabilidadeCondicional()
-
+# Definindo se informações didaticas serão mostradas:
 calculoEscolhido = input("Escolha um calculo: ")
 if "d" in str(calculoEscolhido):
     modoDidatico = True
